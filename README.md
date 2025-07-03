@@ -16,38 +16,38 @@ This repository provides scripts and procedures to:
 - Extract data from Snowflake tables
 - Perform hash comparison and field-by-field data validation with **Pass**, **Warning**, and **Fail** labels
 
+
+```
 oracle_to_snowflake_verification/
 │
 ├── oracle/
-│ ├── controller.py # Oracle control logic
-│ ├── db.py # Oracle DB connection setup
-│ ├── helper.py # Oracle extraction & hashing utils
-│ ├── queries.py # Oracle SQL queries
-│ └── services.py # Oracle-specific services
+│   ├── controller.py           # Oracle control logic
+│   ├── db.py                   # Oracle DB connection setup
+│   ├── helper.py               # Oracle extraction & hashing utils
+│   ├── queries.py              # Oracle SQL queries
+│   └── services.py             # Oracle-specific services
 │
 ├── snowflake/
-│ ├── controller.py # Snowflake control logic
-│ ├── db.py # Snowflake DB connection setup
-│ ├── helper.py # Snowflake extraction & hashing utils
-│ ├── queries.py # Snowflake SQL queries
-│ └── services.py # Snowflake-specific services
+│   ├── controller.py           # Snowflake control logic
+│   ├── db.py                   # Snowflake DB connection setup
+│   ├── helper.py               # Snowflake extraction & hashing utils
+│   ├── queries.py              # Snowflake SQL queries
+│   └── services.py             # Snowflake-specific services
 │
 ├── utils/
-│ └── create_snowflake_table.py # Utility to create Snowflake tables
+│   └── create_snowflake_table.py # Utility to create Snowflake tables
 │
 ├── outputs/
-│ ├── column_differences_slim_order_comments_.csv
-│ └── column_differences_slim_result_comments_.csv
-│ # Validation result exports
+│   └── .gitkeep                # Placeholder to keep outputs folder tracked
 │
-├── sp_load_order_comment.sql # Snowflake SP to load order comment data
-├── sp_load_result_comment.sql # Snowflake SP to load result comment data
+├── sp_load_order_comment.sql   # Snowflake SP to load order comment data
+├── sp_load_result_comment.sql  # Snowflake SP to load result comment data
 │
-├── task_order_comments.py # Pipeline: validates ORDER_COMMENT tables
-├── task_result_comments.py # Pipeline: validates RESULT_COMMENT tables
+├── task_order_comments.py      # Pipeline: validates ORDER_COMMENT tables
+├── task_result_comments.py     # Pipeline: validates RESULT_COMMENT tables
 │
-└── README.md # Project documentation
-
+└── README.md                   # Project documentation
+```
 
 
 ---
@@ -67,7 +67,7 @@ The scripts validate table conversions from **Oracle to Snowflake**, ensuring:
 - **Flexible PK support** (e.g. `ORDER_PROC_ID`, `COMMENT_LINE`, `AUDIT_LINE`)
 - **Hash-based quick filtering** of unchanged rows
 - **Detailed field-by-field comparison** for rows with differing hashes
-- Labels each field as:
+- **Labels each field as**:
   - **Pass** – exact match
   - **Warning** – matches after normalization (e.g. whitespace, special characters, value order)
   - **Fail** – different values
@@ -96,7 +96,8 @@ The scripts validate table conversions from **Oracle to Snowflake**, ensuring:
     ```bash
     pip install -r requirements.txt
     ```
-
+  Note: not available now. To be updated
+  
 3. **Configure database credentials:**
 
     Update your `.env` file with Oracle and Snowflake connection details.
