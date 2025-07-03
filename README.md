@@ -66,10 +66,10 @@ The scripts validate table conversions from **Oracle to Snowflake**, ensuring:
 
 - **Flexible PK support** (e.g. `ORDER_PROC_ID`, `COMMENT_LINE`, `AUDIT_LINE`)
 - **Hash-based quick filtering** of unchanged rows
-- **Detailed field-by-field comparison** for rows with differing hashes
+- **Detailed field-by-field comparison** for rows that fail in hash comparison
 - **Labels each field as**:
   - **Pass** – exact match
-  - **Warning** – matches after normalization (e.g. whitespace, special characters, value order)
+  - **Warning** – matches after normalization (e.g. whitespace, special characters, different value order)
   - **Fail** – different values
 - **Exports results** to structured CSVs in `outputs/`
 
