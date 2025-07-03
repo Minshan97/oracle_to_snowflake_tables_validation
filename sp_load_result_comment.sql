@@ -1,0 +1,51 @@
+CREATE OR REPLACE PROCEDURE APL_USER_DS_MINSHANXIE.sp_load_result_comment()
+RETURNS STRING
+LANGUAGE SQL
+EXECUTE AS OWNER
+AS
+$$
+BEGIN
+    -- Truncate the target table before inserting fresh data
+    TRUNCATE TABLE DB_TEAM_ALBERTA_PRECISION_LABORATORIES_DEVELOPERS.APL_USER_DS_MINSHANXIE.TGT_RESULT_COMMENT_TABLE;
+
+    -- Insert data into the result comment target table
+    INSERT INTO DB_TEAM_ALBERTA_PRECISION_LABORATORIES_DEVELOPERS.APL_USER_DS_MINSHANXIE.TGT_RESULT_COMMENT_TABLE (
+        RESULT_ID,
+        LINE,
+        SYS_COM_TEXT,
+        SYS_COM_TYPE_C,
+        SYS_COM_TYPE_NM,
+        SYS_COM_RPT_INST
+    )
+    SELECT
+        rs.RESULT_ID,
+        rs.LINE,
+        rs.SYS_COM_TEXT,
+        rs.SYS_COM_TYPE_C,
+        ct.NAME AS SYS_COM_TYPE_NM,
+        rs.SYS_COM_RPT_INST
+    FROM DB_SOURCE_EPIC_CLARITY.RAW.RES_SYSTEM_COMMENT rs
+    INNER JOIN DB_SOURCE_EPIC_CLARITY.RAW.ZC_SYS_COM_TYPE ct ON rs.SYS_COM_TYPE_C = ct.SYS_COM_TYPE_C
+    WHERE rs.result_id in (
+    '10000034',
+    '10000037',
+    '100000434',
+    '100000640',
+    '100000698',
+    '100000726',
+    '10000086',
+    '100000963',
+    '100000995',
+    '100001211',
+    '100001218',
+    '10000126',
+    '100001285',
+    '100001444',
+    '10000151',
+    '100001580')
+    ORDER BY result_id, line;
+    ;
+
+    RETURN 'sp_load_result_comment completed.';
+END;
+$$;
