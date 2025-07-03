@@ -1,0 +1,1 @@
+# oracle_to_snowflake_tables_validation
